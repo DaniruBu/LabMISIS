@@ -1,0 +1,14 @@
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/bin/Debug/net7.0/LAB1
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/bin/Debug/net7.0/LAB1.deps.json
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/bin/Debug/net7.0/LAB1.runtimeconfig.json
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/bin/Debug/net7.0/LAB1.dll
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/bin/Debug/net7.0/LAB1.pdb
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/obj/Debug/net7.0/LAB1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/obj/Debug/net7.0/LAB1.AssemblyInfoInputs.cache
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/obj/Debug/net7.0/LAB1.AssemblyInfo.cs
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/obj/Debug/net7.0/LAB1.csproj.CoreCompileInputs.cache
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/obj/Debug/net7.0/LAB1.dll
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/obj/Debug/net7.0/refint/LAB1.dll
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/obj/Debug/net7.0/LAB1.pdb
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/obj/Debug/net7.0/LAB1.genruntimeconfig.cache
+/Users/danilbuyanov/Documents/MISIS_C/LAB1/obj/Debug/net7.0/ref/LAB1.dll
