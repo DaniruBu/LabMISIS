@@ -374,3 +374,440 @@ void Task2_9()
         }
     }
 }
+// LVL3
+
+//Номер 1 3 lvl В матрице размером 7 × 5 переставить строки таким образом, чтобы минимальные элементы строк следовали в порядке убывания.
+void Task3_1() { 
+    int[,] matrixA = new int[7, 5];
+    Random rand = new Random();
+    for (int i = 0; i < 7; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            matrixA[i, j] = rand.Next(1, 10);
+        }
+    }
+
+    int[,] minrow = new int[7, 2];
+
+    for (int i = 0; i < 7; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            Console.Write(matrixA[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+
+    Console.WriteLine(" ");
+
+    for (int i = 0; i < 7; i++)
+    {
+        int min = matrixA[i, 0];
+        for (int j = 0; j < 5; j++)
+        {
+            if (matrixA[i, j] < min)
+            {
+                min = matrixA[i, j];
+            }
+        }
+        minrow[i, 0] = min;
+        minrow[i, 1] = i;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        for (int j = i + 1; j < 7; j++)
+        {
+            if (minrow[j, 0] > minrow[i, 0])
+            {
+                int[,] temp = new int[1, 2] { { minrow[j, 0], minrow[j, 1] } };
+                minrow[j, 0] = minrow[i, 0];
+                minrow[j, 1] = minrow[i, 1];
+                minrow[i, 0] = temp[0, 0];
+                minrow[i, 1] = temp[0, 1];
+            }
+        }
+    }
+
+    int[,] NewmatrixA = new int[7, 5];
+    for (int i = 0; i < 7; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            NewmatrixA[i, j] = matrixA[minrow[i, 1], j];
+        }
+    }
+
+    for (int i = 0; i < 7; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            Console.Write(NewmatrixA[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+void Task3_2()
+{
+    int n = 5;
+    int[,] matrix = new int[n, n];
+
+    Random random = new Random();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            matrix[i, j] = random.Next(10);
+        }
+    }
+
+    int rows = matrix.GetLength(0);
+    int cols = matrix.GetLength(1);
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            Console.Write(matrix[i, j] + "\t");
+        }
+        Console.WriteLine();
+    }
+
+    FillPerimeterWithZeros(matrix);
+
+    Console.WriteLine("\n");
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            Console.Write(matrix[i, j] + "\t");
+        }
+        Console.WriteLine();
+    }
+
+    static void FillPerimeterWithZeros(int[,] matrix)
+    {
+        int n = matrix.GetLength(0);
+
+        for (int i = 0; i < n; i++)
+        {
+            matrix[0, i] = 0;
+
+            matrix[n - 1, i] = 0;
+
+            matrix[i, 0] = 0;
+
+            matrix[i, n - 1] = 0;
+        }
+    }
+}
+
+void Task3_3()
+{
+    int n = 5;
+    int[,] matrix = new int[n, n];
+
+    Random random = new Random();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            matrix[i, j] = random.Next(10);
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+
+    Console.WriteLine(" ");
+
+
+    int[] diagonalSums = new int[2 * n - 1];
+
+    // Суммирование элементов на главной диагонали и диагоналях выше нее
+    for (int k = 0; k < n; k++)
+    {
+        for (int i = 0; i < n - k; i++)
+        {
+            diagonalSums[k] += matrix[i, i + k];
+        }
+    }
+
+    // Суммирование элементов на диагоналях ниже главной
+    for (int k = 1; k < n; k++)
+    {
+        for (int i = 0; i < n - k; i++)
+        {
+            diagonalSums[k + n - 1] += matrix[i + k, i];
+        }
+    }
+
+    for (int i = 0; i < diagonalSums.Length; i++)
+    {
+        Console.Write(diagonalSums[i] + "\t");
+    }
+    Console.WriteLine();
+
+}
+
+void Task3_4()
+{
+    int n = 5;
+    int[,] matrix = new int[n, n];
+
+    Random random = new Random();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            matrix[i, j] = random.Next(10);
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+
+    Console.WriteLine(" ");
+
+    for (int i = n / 2; i < n; i++)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            matrix[i, j] = 1;
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+
+}
+
+void Task3_8()
+{
+    int r = 7;
+    int c = 5;
+
+    int[,] matrix = new int[r, c];
+
+    Random random = new Random();
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            matrix[i, j] = random.Next(-10, 11);
+        }
+    }
+
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+
+    Console.WriteLine(" ");
+
+    int[] positiveCount = new int[r];
+
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            if (matrix[i, j] > 0)
+            {
+                positiveCount[i]++;
+            }
+        }
+    }
+
+    for (int i = 0; i < r - 1; i++)
+    {
+        for (int j = 0; j < r - 1 - i; j++)
+        {
+            if (positiveCount[j] < positiveCount[j + 1])
+            {
+                int temp = positiveCount[j];
+                positiveCount[j] = positiveCount[j + 1];
+                positiveCount[j + 1] = temp;
+
+                for (int k = 0; k < c; k++)
+                {
+                    temp = matrix[j, k];
+                    matrix[j, k] = matrix[j + 1, k];
+                    matrix[j + 1, k] = temp;
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+
+}
+
+void Task3_10()
+{
+    int r = 4;
+    int c = 5;
+
+    int[,] matrix = new int[r, c];
+
+    Random random = new Random();
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            matrix[i, j] = random.Next(10);
+        }
+    }
+
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+
+    Console.WriteLine(" ");
+
+    for (int i = 0; i < r; i++)
+    {
+        if (i % 2 == 0)
+        {
+            for (int j = 0; j < c - 1; j++)
+            {
+                for (int k = 0; k < c - 1 - j; k++)
+                {
+                    if (matrix[i, k] < matrix[i, k + 1])
+                    {
+                        int temp = matrix[i, k];
+                        matrix[i, k] = matrix[i, k + 1];
+                        matrix[i, k + 1] = temp;
+                    }
+                }
+            }
+        }
+
+        else
+        {
+            for (int j = 0; j < c - 1; j++)
+            {
+                for (int k = 0; k < c - 1 - j; k++)
+                {
+                    if (matrix[i, k] > matrix[i, k + 1])
+                    {
+                        int temp = matrix[i, k];
+                        matrix[i, k] = matrix[i, k + 1];
+                        matrix[i, k + 1] = temp;
+                    }
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+
+}
+
+void Task3_11()
+{
+    int r = 5;
+    int c = 4;
+    int[,] matrix = new int[r, c];
+
+    Random random = new Random();
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            matrix[i, j] = random.Next(10);
+        }
+    }
+
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+
+    Console.WriteLine(" ");
+
+    List<int> List = new List<int>();
+
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            if (matrix[i, j] == 0)
+            {
+                List.Add(i);
+                break;
+            }
+        }
+    }
+
+    for (int i = List.Count - 1; i >= 0; i--)
+    {
+        int N = List[i];
+
+        for (int j = N; j < r - 1; j++)
+        {
+            for (int k = 0; k < c; k++)
+            {
+                matrix[j, k] = matrix[j + 1, k];
+            }
+        }
+
+        r--;
+    }
+
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+Task3_11();
